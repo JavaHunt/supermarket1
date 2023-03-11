@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Stocks Available
+        </title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}">
+    </head>
+    
+    <body>
+        {% include 'adminNavigation.html' with home="active" %}
+        <br>
+        <!-- Previous Day Transactions -->
+        <div>
+            Day Transactions
+        </div>
+
+        <!-- Previous week Transactions -->
+        <div>
+            Week Transactions
+        </div>
+
+        <!-- Pipeline -->
+        <div class="pipeline">
+            <table>
+                <tr>
+                    <th> ID </th>
+                    <th> Time </th>
+                    <th> Amount </th>
+                    <th> Paid </th>
+                </tr>
+                {% for dict in pipeline_stocks %}
+                    <tr>
+                        <td>{{dict.id}}</td>
+                        <td>{{dict.transtime}}</td>
+                        <td>{{dict.amount}}</td>
+                        <td id="{{dict.id}}">{{dict.paid}}</td>
+                        <td><button onclick="paid_bill1()">paid</button></td>
+                        <!--
+                        {% if true %}
+                            <td style="background-color:green">Yes</td>
+                        {% else %}
+                            <td style="background-color:red">No</td>
+                        {% endif %}
+                        -->
+                            
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td>s102</td>
+                    <td>10:40:59</td>
+                    <td>150.00</td>
+                    <td id="s102">no</td>
+                    <td><button onclick="paid_bill2()">paid</button></td>
+                </tr>
+            </table>
+        </div>
+        <script>
+            function paid_bill1(){
+                document.getElementById("s101").innerHTML = "yes";
+                document.getElementById("s101").style.backgroundColor = "rgb(3, 252, 94)";
+            }
+            function paid_bill2(){
+                document.getElementById("s102").innerHTML = 'yes';
+                document.getElementById("s102").style.backgroundColor = "rgb(3, 252, 94)";
+            }
+        </script>
+
+    </body>
+</html>

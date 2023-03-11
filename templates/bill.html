@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Add Transaction
+        </title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bill-page.css' %}">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    </head>
+    <script type="text/javascript" src="{% static 'js/bill-script6.js' %}"></script>
+    <!--<script type="module" src="{% static 'js/billing.js' %}"></script>-->
+    
+
+  <body>
+    {% include 'navigation.html' with new="active" %}
+    <div class="data">
+      <table>
+      <form action="###">
+          <h2 style="padding-left: 40%;">Add New Item</h2>
+          <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+          </tr>
+          <tr>
+              <td><label for="product">Item Name</label></td>
+              <td><input type="text" id="product" name="product" list="brow"  required><br><br>
+                
+                <datalist id="brow">
+                  {% for product in products %}
+                    <option value="{{product}}"></option>
+                  {% endfor %}
+                </datalist>
+              </td>
+              <td><label for="Iid">Item ID</label></td>
+              <td><input type="text" id="Iid" oninput="search()" name="Iid" required><br><br></td>
+          </tr>
+          <tr>
+              <td><label for="item">Item qnty</label></td>
+              <td><input type="number" id="item" name="item" required><br><br></td>
+              <td><label for="rate">Actual Price</label></td>
+              <td><input type="text" id="rate" name="rate" ><br><br></td>
+          </tr>
+          <tr>
+              <td><label for="discount">Discount Price</label> </td>
+              <td><input type="text" id="discount" name="discount"><br><br></td>
+              <td><label for="save">Save</label> </td>
+              <td><input type="text" id="save" name="save" disabled><br><br></td>
+          </tr>
+          <tr></tr>
+          <tr>
+            <td colspan="2" ><button type="button" onclick="addelement(),addelement1();" style="padding: 15px;">Add Item</button></td>
+            <td colspan="2" ><a href="print-bill.html"><button type="button" id="printbtn"style="padding: 20px;">Bill</button></a></td>
+            <td> <button onclick="download()">Save</button> </td>
+          </tr>
+      </form>
+      </table>
+  </div>
+  <!--
+  <form method='post' id='test'> {% csrf_token %}
+    <input type="hidden" value="video34"/>
+    <input type='submit' value='Test button'/>
+    <div id='message'>Initial text</div>
+  </form>
+  -->
+  <div class="addlist"><br>
+      <table id="maintable">
+          <tr name="maintable">
+              <th>Item ID</th>
+              <th > Item-Name</th>
+              <th >Quantity</th>
+              <th >Actual Price</th>
+              <th> Save </th>
+              <th >ToTal</th>
+          </tr>
+      </table> 
+  </div>
+  <div class="addqnty"><br>
+    <table style="margin-left: 20%; width: 50%;" id="secondtable" class="list">
+      <tr>
+        <th> Item-Name</th>
+        <th>Qnty  </th>
+      </tr>
+
+      <!-- <tr>
+          <i class="fa-solid fa-trash"></i>
+          <i class="fa-solid fa-plus"></i>
+          <i class="fa-solid fa-minus"></i> -->
+
+    </table>
+  </div>
+  <p id="para1"></p>
+  
+  </body>
+</html>
